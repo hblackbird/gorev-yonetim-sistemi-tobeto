@@ -1,12 +1,9 @@
-﻿
-
-namespace Domain.Enums;
-public class GorevDurumu
+﻿namespace Domain.Enums
 {
-    public enum Status
+    public enum GorevDurumu
     {
-        newly,
-        inprogress,
-        completed
+        Newly,
+        InProgress,
+        Completed
     }
 }

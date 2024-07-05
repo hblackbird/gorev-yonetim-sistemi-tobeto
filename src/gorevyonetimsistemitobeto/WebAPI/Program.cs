@@ -1,6 +1,9 @@
 using Application;
 using Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NArchitecture.Core.CrossCuttingConcerns.Exception.WebApi.Extensions;
@@ -29,7 +32,10 @@ builder.Services.AddApplicationServices(
     elasticSearchConfig: builder.Configuration.GetSection("ElasticSearchConfig").Get<ElasticSearchConfig>()
         ?? throw new InvalidOperationException("ElasticSearchConfig section cannot found in configuration.")
 );
+
+// AddDbContext methodunu kullanarak veritabaný saðlayýcýsýný yapýlandýrýn
 builder.Services.AddPersistenceServices(builder.Configuration);
+
 builder.Services.AddInfrastructureServices();
 builder.Services.AddHttpContextAccessor();
 

@@ -6,6 +6,7 @@ using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NArchitecture.Core.Security.Constants;
+using Application.Features.Gorevs.Constants;
 
 namespace Persistence.EntityConfigurations;
 
@@ -97,6 +98,20 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         );
         #endregion
 
+        
+        #region Gorevs
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = GorevsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = GorevsOperationClaims.Read },
+                new() { Id = ++lastId, Name = GorevsOperationClaims.Write },
+                new() { Id = ++lastId, Name = GorevsOperationClaims.Create },
+                new() { Id = ++lastId, Name = GorevsOperationClaims.Update },
+                new() { Id = ++lastId, Name = GorevsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
         return featureOperationClaims;
     }
 #pragma warning restore S1854 // Unused assignments should be removed
