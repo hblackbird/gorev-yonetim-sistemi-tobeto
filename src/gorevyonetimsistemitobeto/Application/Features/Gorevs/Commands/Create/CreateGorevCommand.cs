@@ -12,6 +12,7 @@ namespace Application.Features.Gorevs.Commands.Create;
 public class CreateGorevCommand : IRequest<CreatedGorevResponse>, ICacheRemoverRequest, ILoggableRequest
 {
     public string Title { get; set; }
+    public Guid UserId { get; set; }
     public GorevDurumu Status { get; set; }
     public string Description { get; set; }
 
@@ -35,6 +36,7 @@ public class CreateGorevCommand : IRequest<CreatedGorevResponse>, ICacheRemoverR
 
         public async Task<CreatedGorevResponse> Handle(CreateGorevCommand request, CancellationToken cancellationToken)
         {
+            await _gorevBusinessRules.UserShouldExist(request.UserId);
             Gorev gorev = _mapper.Map<Gorev>(request);
 
             await _gorevRepository.AddAsync(gorev);

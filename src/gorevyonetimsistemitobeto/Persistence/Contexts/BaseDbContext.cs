@@ -33,6 +33,11 @@ namespace Persistence.Contexts
                 .Entity<Gorev>()
                 .Property(e => e.Status)
                 .HasConversion(gorevDurumuConverter);
+            modelBuilder.Entity<Gorev>()
+            .HasOne(g => g.User)
+            .WithMany(u => u.Gorevler)
+            .HasForeignKey(g => g.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         }
     }
