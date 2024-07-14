@@ -10,4 +10,5 @@ public class GetListGorevListItemDto : IDto
     public Guid UserId { get; set; }
     public GorevDurumu Status { get; set; }
     public string Description { get; set; }
+    public DateTime CreatedDate { get; set; }
 }

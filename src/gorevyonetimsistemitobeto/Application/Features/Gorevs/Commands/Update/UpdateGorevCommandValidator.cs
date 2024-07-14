@@ -8,7 +8,7 @@ public class UpdateGorevCommandValidator : AbstractValidator<UpdateGorevCommand>
     {
         RuleFor(c => c.Id).NotEmpty();
         RuleFor(c => c.Title).NotEmpty();
-        RuleFor(c => c.Status).NotEmpty();
+        RuleFor(c => c.Status).IsInEnum();
         RuleFor(c => c.Description).NotEmpty();
     }
 }

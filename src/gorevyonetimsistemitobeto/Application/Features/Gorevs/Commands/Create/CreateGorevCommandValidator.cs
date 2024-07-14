@@ -11,8 +11,5 @@ public class CreateGorevCommandValidator : AbstractValidator<CreateGorevCommand>
         RuleFor(c => c.Status).IsInEnum();
         RuleFor(c => c.Description).NotEmpty();
     }
-    private bool BeAValidStatus(GorevDurumu status)
-    {
-        return Enum.IsDefined(typeof(GorevDurumu), status);
-    }
+    
 }

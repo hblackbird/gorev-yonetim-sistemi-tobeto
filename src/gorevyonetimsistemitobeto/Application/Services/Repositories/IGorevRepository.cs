@@ -5,4 +5,5 @@ namespace Application.Services.Repositories;
 
 public interface IGorevRepository : IAsyncRepository<Gorev, Guid>, IRepository<Gorev, Guid>
 {
+    Task HardDeleteAsync(Gorev gorev);
 }

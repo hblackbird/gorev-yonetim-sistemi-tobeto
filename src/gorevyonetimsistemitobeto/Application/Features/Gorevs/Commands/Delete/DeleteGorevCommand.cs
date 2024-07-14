@@ -32,14 +32,14 @@ public class DeleteGorevCommand : IRequest<DeletedGorevResponse>, ICacheRemoverR
         }
 
         public async Task<DeletedGorevResponse> Handle(DeleteGorevCommand request, CancellationToken cancellationToken)
-        {
-            Gorev? gorev = await _gorevRepository.GetAsync(predicate: g => g.Id == request.Id, cancellationToken: cancellationToken);
-            await _gorevBusinessRules.GorevShouldExistWhenSelected(gorev);
+    {
+        Gorev? gorev = await _gorevRepository.GetAsync(g => g.Id == request.Id, cancellationToken: cancellationToken);
+        await _gorevBusinessRules.GorevShouldExistWhenSelected(gorev);
 
-            await _gorevRepository.DeleteAsync(gorev!);
+        await _gorevRepository.HardDeleteAsync(gorev!); // Hard delete metodu kullanýlýyor
 
-            DeletedGorevResponse response = _mapper.Map<DeletedGorevResponse>(gorev);
-            return response;
-        }
+        DeletedGorevResponse response = _mapper.Map<DeletedGorevResponse>(gorev);
+        return response;
+    }
     }
 }
